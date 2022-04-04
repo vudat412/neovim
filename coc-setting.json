@@ -1,0 +1,16 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "css", "markdown"],
+  "eslint.filetypes": ["javascript", "typescript", "typescriptreact", "javascriptreact", "typescript.tsx"],
+  "coc.preferences.diagnostic.virtualText": true,
+  "languageserver": {
+      "flow": {
+          "command": "flow",
+          "args": ["lsp"],
+          "filetypes": ["javascript", "javascriptreact"],
+          "initializationOptions": {},
+          "requireRootPattern": true,
+          "settings": {},
+          "rootPatterns": [".flowconfig"]
+      }
+  }
+}
