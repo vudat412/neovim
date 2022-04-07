@@ -1,37 +1,57 @@
 {
     "diagnostic.errorSign": "✗",
-    "diagnostic.warningSign": "✗",
+    "diagnostic.warningSign": "⚠️",
     "diagnostic.infoSign": "✗",
     "diagnostic.hintSign": "✗",
     "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "css",
-    "markdown",
-    "python",
-    "html"
-  ],
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact",
-    "typescript.tsx"
-  ],
-  "coc.preferences.diagnostic.virtualText": true,
-  "languageserver": {
-    "flow": {
-      "command": "flow",
-      "args": ["lsp"],
-      "filetypes": ["javascript", "javascriptreact"],
-      "initializationOptions": {},
-      "requireRootPattern": true,
-      "settings": {},
-      "rootPatterns": [".flowconfig"]
-    }
-  }
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "javascriptreact",
+        "typescript.tsx",
+        "css",
+        "markdown",
+        "python",
+        "html"
+    ],
+    "eslint.filetypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact",
+        "typescript.tsx"
+    ],
+    "coc.preferences.diagnostic.virtualText": true,
+    "languageserver": {
+        "flow": {
+            "command": "flow",
+            "args": [
+                "lsp"
+            ],
+            "filetypes": [
+                "javascript",
+                "javascriptreact"
+            ],
+            "initializationOptions": {},
+            "requireRootPattern": true,
+            "settings": {},
+            "rootPatterns": [
+                ".flowconfig"
+            ]
+        }
+    },
+    "emmet.showExpandedAbbreviation": "always",
+    "emmet.showAbbreviationSuggestions": true,
+    "emmet.includeLanguages": [
+        "html",
+        "javascript",
+        "javascriptreact",
+        "css",
+        "typescript",
+        "typescriptreact",
+        "python"
+    ],
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.optimizeStylesheetParsing": true
 }
