@@ -43,14 +43,14 @@ function! GitStatus() abort
     return ""
 endfunction
 
-function! ShowDocumentation()
-    if &filetype == 'vim'
-        execute 'h '.expand('<cword>')
-    elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-    else
-        execute '!' . &keywordprg . " " . expand('<cword>')
-    endif
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
 endfunction
 
 function! LinterStatus() abort
@@ -76,7 +76,6 @@ function! DiagnosticStatus() abort
     return printf('w:%d e:%d h:%d i:%d', l:warning, l:error, l:hint, l:information)
 endfunction
 
-
 " Nerdtree
 function! TrimWhitespace()
     let l:save = winsaveview()
@@ -91,7 +90,6 @@ function NERDTreeToggleAndRefresh()
   endif
 endfunction
 
-
 " Terimal
 function! OpenTerminal()
   split term://pwsh.exe
@@ -103,3 +101,23 @@ endfunction
 function! g:EchoUrl(url)
     :echo a:url
 endfunction
+
+" ALE
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+" TAB
+"function! s:check_back_space() abort
+"  let col = col('.') - 1
+"  return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
