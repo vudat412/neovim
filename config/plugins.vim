@@ -1,9 +1,18 @@
+"#####################################################################################################
+"                           ____     __                     _
+"                          / __ \   / /  __  __   ____ _   (_)   ____    _____
+"                         / /_/ /  / /  / / / /  / __ `/  / /   / __ \  / ___/
+"                        / ____/  / /  / /_/ /  / /_/ /  / /   / / / / (__  )
+"                       /_/      /_/   \__,_/   \__, /  /_/   /_/ /_/ /____/
+"                                              /____/
+"######################################################################################################
+
 call plug#begin('~/.vim/plugged')
 "Languages~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
-Plug 'grvcoelho/vim-javascript-snippets'
+"Plug 'grvcoelho/vim-javascript-snippets'
 Plug 'honza/vim-snippets'
 Plug 'vim-ruby/vim-ruby'
 Plug 'kevinhui/vim-docker-tools'
@@ -11,6 +20,7 @@ Plug 'tomlion/vim-solidity'
 "Special~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+"Easymodion~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
@@ -37,6 +47,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 "Themes~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'dracula/vim'
+Plug 'dylanaraps/wal.vim'
+"Status bar~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Screenshot~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

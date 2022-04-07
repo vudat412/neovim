@@ -1,3 +1,14 @@
+"###################################################################################
+"       __  ___                      _
+"      /  |/  /____ _ ____   ____   (_)____   ____ _ _____
+"     / /|_/ // __ `// __ \ / __ \ / // __ \ / __ `// ___/
+"    / /  / // /_/ // /_/ // /_/ // // / / // /_/ /(__  )
+"   /_/  /_/ \__,_// .___// .___//_//_/ /_/ \__, //____/
+"                 /_/    /_/               /____/
+"
+"###################################################################################
+
+" Set leader to space bar
 let mapleader = "-"
 let maplocalleader = "\\"
 "cmd history nav
@@ -51,7 +62,7 @@ tnoremap <silent><A-;> <C-\><C-n>:bd!<Enter>
 " move line in file
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
-" Tab
+" Tabbar
 nnoremap <silent> <F8> :TagbarToggle<CR>
 " ESC
 tnoremap <Esc> <C-\><C-n>
@@ -62,7 +73,28 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Search and Replace hotkey
 nnoremap H :%s//gc<left><left><left>
 " Markdown
-nmap <C-s> <Plug>MarkdownPreview
-nmap <M-s> <Plug>MarkdownPreviewStop
+"nmap <C-s> <Plug>MarkdownPreview
+nmap <Leader>md <Plug>MarkdownPreviewToggle
+nmap <C-c> <Plug>MarkdownPreviewStop
 " YATS
 map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+" Start Screen
+nmap <c-n> :Startify<cr> " CtrN open start screen neovim
+" AutoComplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" TAB
+"inoremap <silent><expr> <TAB>
+      "\ pumvisible() ? "\<C-n>" :
+      "\ <SID>check_back_space() ? "\<TAB>" :
+      "\ coc#refresh()
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Enter to confirm completion
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+

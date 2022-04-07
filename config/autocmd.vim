@@ -1,85 +1,94 @@
-let mapleader = "-"
-let maplocalleader = "\\"
-"cmd history nav
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-"rerender window with cleaning highlight search
-nnoremap <silent> // :noh<return>
-"quickfix list
-nnoremap <silent>[e :cp<Enter>
-nnoremap <silent>]e :cn<Enter>
-"save buffer
-nnoremap <Leader>w :w!<Enter>
-"save and exit
-nnoremap <silent><Leader>x :x!<Enter>
-"revert buffer
-nnoremap <silent><Leader>e :e!<Enter>
-"quit all
-nnoremap <Leader>! :qa!<Enter>
-"delete buffer & do not close window
-nnoremap <silent><Leader>d :bp<bar>sp<bar>bn<bar>bd!<Enter>
-"delete buffer & close window
-nnoremap <silent><Leader>; :bd!<Enter>
-"only one window
-nnoremap <silent><Leader>o <C-w>o
-"close window
-nnoremap <silent><Leader>q <C-w>q
-"show registers
-nnoremap <Leader>r :reg<Enter>
-"jumps between widnows
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
-inoremap <C-h> <C-\><C-n><C-w>h
-inoremap <C-j> <C-\><C-n><C-w>j
-inoremap <C-k> <C-\><C-n><C-w>k
-inoremap <C-l> <C-\><C-n><C-w>l
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-" open file tap
-nnoremap <silent><C-t> :vsplit<CR>
-nnoremap <silent><C-w> :split<CR>
-"terminal open
-nnoremap <c-n> :call OpenTerminal()<CR>
-nnoremap <silent><Leader>v :vsplit term://pwsh<Enter>:norm A<Enter>
-nnoremap <silent><Leader>t :split term://pwsh<Enter>:norm A<Enter>
-"terminal close
-tnoremap <silent><A-;> <C-\><C-n>:bd!<Enter>
-" move line in file
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-" Tabbar
-nnoremap <silent> <F8> :TagbarToggle<CR>
-" ESC
-tnoremap <Esc> <C-\><C-n>
-" Nerdtree
-map <C-r> :call NERDTreeToggleAndRefresh()<CR>
-" reload source
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" Search and Replace hotkey
-nnoremap H :%s//gc<left><left><left>
-" Markdown
-nmap <C-s> <Plug>MarkdownPreview
-nmap <M-s> <Plug>MarkdownPreviewStop
-" YATS
-map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
-" Start Screen
-nmap <c-n> :Startify<cr> " CtrN open start screen neovim
-" AutoComplete
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" TAB
-"inoremap <silent><expr> <TAB>
-"      \ pumvisible() ? "\<C-n>" :
-"      \ <SID>check_back_space() ? "\<TAB>" :
-"      \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
+" run code
+autocmd FileType go setlocal noexpandtab
+autocmd FileType ruby call UseSpacesTwo()
+autocmd WinEnter term://* startinsert
+
+autocmd BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.cs,*.rkt,*.h,*.sh
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=120 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+" set filetypes as typescriptreact || vim-jsx-typecript
+autocmd BufNewFile,BufRead *.tsx,*.jsx, *.js, *.ts set filetype=typescriptreact
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
+
+" Javascript
+augroup javascript_folding
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+augroup END
+
+"run code
+augroup mygroup
+    autocmd!
+    " execute python code
+    autocmd FileType python nnoremap <buffer> <F6>
+                \ :sp<bar>:w<CR> :term python3 %<CR> :startinsert<CR>
+    autocmd FileType python nnoremap <buffer> <F5>
+                \ :sp<bar>:w<CR> :term python %<CR> :startinsert<CR>
+    " execute javascript code
+    autocmd FileType javascript nnoremap <buffer> <F5>
+                \ :sp<bar>:w<CR> :term node %<CR> :startinsert<CR>
+    autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++11 % <cr> :vnew <bar> :te "a.exe" <cr><cr>
+    autocmd filetype cpp nnoremap <f6> :vnew <bar> :te "a.exe" <cr>
+    autocmd filetype c nnoremap <f5> :w <bar> !make %:r && ./%:r <cr>
+    autocmd filetype java nnoremap <f5> :w <bar> !javac % && java %:r <cr>
+augroup end
+
+" Automaticaly close nvim if NERDTree is only thing left open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Refresh the current folder if any changes
+autocmd BufEnter NERD_tree_* | execute 'normal R'
+autocmd CursorHold * if exists("t:NerdTreeBufName") | call <SNR>15_refreshRoot() | endif
+"Reload the window if directory is changed
+augroup DIRCHANGE
+    autocmd!
+    autocmd DirChanged global :NERDTreeCWD
+augroup END
+autocmd BufWritePre * :call TrimWhitespace()
+
+" Open terimal
+autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+" FZF
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
+" Hide status bar while using fzf commands
+if has('nvim') || has('gui_running')
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 | autocmd WinLeave <buffer> set laststatus=2
 endif
+
+" ALE
+augroup YourGroup
+    autocmd!
+    autocmd User ALELintPre    call YourFunction()
+    autocmd User ALELintPost   call YourFunction()
+
+    autocmd User ALEJobStarted call YourFunction()
+
+    autocmd User ALEFixPre     call YourFunction()
+    autocmd User ALEFixPost    call YourFunction()
+augroup END
+
+" Coc
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Markdown
+augroup specify_filetype
+    autocmd!
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+    autocmd BufRead,BufNewFile *.txt set filetype=text
+augroup END
+autocmd FileType text,markdown setlocal spell
+" Limit line length for text files
+autocmd FileType text,markdown,tex setlocal textwidth=180

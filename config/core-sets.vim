@@ -18,8 +18,10 @@ filetype on " Enable type file detection. Vim will be able to try to detect the 
 "filetype indent on " Load an indent file for the detected file type.
 "filetype plugin on " Enable plugins and load plugin for the detected file type.
 syntax on
+" Store backup files in one place.
+set backupdir^=~/AppData/Local/nvim/backup//
+highlight Comment cterm=italic gui=italic
 " Coc
-"set cmdheight=2
 set shortmess+=c
 set updatetime=300
 set timeoutlen=30000
@@ -78,6 +80,7 @@ set smartcase
 set mouse=a
 set noswapfile
 set backspace=indent,eol,start
+set noshowmode " Don't display mode in command line (airline already shows it)
 
 set background=dark
 set termguicolors
@@ -114,3 +117,11 @@ set statusline+=%3*\ \%*
 " AutoComplete
 set completeopt=menuone,noinsert,noselect " Set completeopt to have a better completion experience
 set shortmess+=c " Avoid showing message extra message when using completion
+
+"""""""""""""""""""
+" Vim easy motion "
+"""""""""""""""""""
+hi EasyMotionTarget ctermbg=none ctermfg=green
+hi EasyMotionShade  ctermbg=none ctermfg=cyan
+hi EasyMotionTarget2First ctermbg=none ctermfg=red
+hi EasyMotionTarget2Second ctermbg=none ctermfg=cyan

@@ -15,8 +15,17 @@ nnoremap <silent> <Leader>l :Buffers<CR>
 nnoremap <C-p> :Files <CR>
 "gundo
 nnoremap <silent> <Leader>i :GundoToggle<CR>
-"easymotion
-map <Leader>f <Plug>(easymotion-bd-f)
+
+" easymotion commands
+map <Leader><Leader>. <Plug>(easymotion-repeat)
+map <Leader><Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader><Leader>f <Plug>(easymotion-overwin-f)
+nmap <Leader><Leader>s <Plug>(easymotion-overwin-f2)
+nmap <Leader><Leader>j <Plug>(easymotion-overwin-line)
+nmap <Leader><Leader>k <Plug>(easymotion-overwin-line)
+map  <Leader><Leader>w <Plug>(easymotion-bd-w)
+map <Leader><Leader>w <Plug>(easymotion-overwin-w)
+
 "COC
 "main commands
 nmap <silent>gd <Plug>(coc-definition)
