@@ -1,3 +1,4 @@
+" run code
 autocmd FileType go setlocal noexpandtab
 autocmd FileType ruby call UseSpacesTwo()
 autocmd WinEnter term://* startinsert
@@ -11,7 +12,6 @@ autocmd BufNewFile,BufRead *.py,*.java,*.cpp,*.c,*.cs,*.rkt,*.h,*.sh
     \ set autoindent |
     \ set fileformat=unix |
 
-
 " set filetypes as typescriptreact || vim-jsx-typecript
 autocmd BufNewFile,BufRead *.tsx,*.jsx, *.js, *.ts set filetype=typescriptreact
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
@@ -20,6 +20,12 @@ autocmd FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType css setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 autocmd Filetype typescript setlocal tabstop=2 shiftwidth=2 softtabstop=0 expandtab
+
+" Javascript
+augroup javascript_folding
+    autocmd!
+    autocmd FileType javascript setlocal foldmethod=syntax
+augroup END
 
 "run code
 augroup mygroup
@@ -57,3 +63,17 @@ autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
 
+" ALE
+augroup YourGroup
+    autocmd!
+    autocmd User ALELintPre    call YourFunction()
+    autocmd User ALELintPost   call YourFunction()
+
+    autocmd User ALEJobStarted call YourFunction()
+
+    autocmd User ALEFixPre     call YourFunction()
+    autocmd User ALEFixPost    call YourFunction()
+augroup END
+
+" Coc
+autocmd CursorHold * silent call CocActionAsync('highlight')
