@@ -1,6 +1,6 @@
-# neovim config by lua
+# <center> neovim config by lua </center>
 
-# Install for Windows or Linux, MacOs
+### Install for Windows or Linux, MacOs
 
 # Step 1: download repo for win
 
@@ -29,3 +29,18 @@
 # step 5: thank for readding
 
 > Donate: ViettinBank: 103868801400
+
+
+# Delete
+
+> Linux 
+```diff
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+rm -rf ~/.cache/nvim
+```
+> Windows
+```diff
+rm $env:LOCALAPPDATA\nvim-data\site\pack\packer\start\packer.nvim
+rm ~\AppData\Local\nvim
+```
