@@ -1,13 +1,15 @@
--- Import Lua modules
-require('packer_init')
--- require('core/colors')
-require('core/settings')
-require('core/keymaps')
-require('core/statusline')
-require('plugins/nvim-tree')
-require('plugins/indent-blankline')
-require('plugins/vista')
-require('plugins/nvim-cmp')
-require('plugins/nvim-lspconfig')
-require('plugins/nvim-treesitter')
-require('plugins/alpha-nvim')
+require('datv.plugins')
+require('datv.keybindings')
+require('datv.options')
+
+-- ####### PATH ENV ######## -- 
+vim.cmd[[
+let g:loaded_python_provider = 0
+let s:local_vimrc = expand('~\AppData\Local\nvim\init.local.vim')
+if filereadable(fnameescape(s:local_vimrc))
+  execute 'source ' . fnameescape(s:local_vimrc)
+endif
+unlet! s:local_vimrc
+]]
+
+
