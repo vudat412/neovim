@@ -92,8 +92,23 @@ vim.cmd('inoremap <expr> <c-k> (\"\\<C-p>\")')
 vim.cmd("vnoremap // y/\\V<C-R>=escape(@\",'/\')<CR><CR>")
 
 -- Run Code 
-map("n", "<F5>", ":sp<bar>:w<CR> :term node %<CR> :startinsert<CR>", {noremap = true, silent = true})
-map("n", "<F5>", ":sp<bar>:w<CR> :term python3 %<CR> :startinsert<CR>", {noremap = true, silent = true})
+-- map("n", "<F5>", ":sp<bar>:w<CR> :term node %<CR> :startinsert<CR>", {noremap = true, silent = true})
+-- map("n", "<F5>", ":sp<bar>:w<CR> :term python3 %<CR> :startinsert<CR>", {noremap = true, silent = true})
+vim.cmd[[ 
+augroup mygroup
+    autocmd!
+    " execute python code
+    autocmd FileType python nnoremap <buffer> <F6>
+                \ :sp<bar>:w<CR> :term python3 %<CR> :startinsert<CR>
+    " execute javascript code
+    autocmd FileType javascript nnoremap <buffer> <F5>
+                \ :sp<bar>:w<CR> :term node %<CR> :startinsert<CR>
+    autocmd filetype cpp nnoremap <f5> :w <bar> !g++ -std=c++11 % <cr> :vnew <bar> :te "a.exe" <cr><cr>
+    autocmd filetype cpp nnoremap <f6> :vnew <bar> :te "a.exe" <cr>
+    autocmd filetype c nnoremap <f5> :w <bar> !make %:r && ./%:r <cr>
+    autocmd filetype java nnoremap <f5> :w <bar> !javac % && java %:r <cr>
+augroup end
+]]
 
 -- auto close and open nvim-tree after exists
 vim.cmd[[ 
@@ -106,3 +121,6 @@ autocmd BufNewFile,BufRead *.sol setfiletype solidity
 map("n", "<C-p>", ":MarkdownPreview <cr>", {noremap = true, silent = true})
 map("n", "<C-s>", ":MarkdownPreviewStop <cr>", {noremap = true, silent = true})
 
+vim.cmd[[ 
+autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
+]]

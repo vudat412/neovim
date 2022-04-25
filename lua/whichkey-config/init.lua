@@ -54,7 +54,7 @@ triggers_blacklist = {
 
 local Terminal = require('toggleterm.terminal').Terminal
 local toggle_float = function()
-  local float = Terminal:new({direction = "float"})
+  local float = Terminal:new({cmd = "pwsh", direction = "float"})
   return float:toggle()
 end
 local toggle_lazygit = function()

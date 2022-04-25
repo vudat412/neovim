@@ -31,9 +31,12 @@ return require('packer').startup(function(use)
   use {'folke/which-key.nvim', event = "BufWinEnter", config = "require('whichkey-config')"}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/plenary.nvim'}},
+    requires = { {'nvim-lua/plenary.nvim'}, { "kdheepak/lazygit.nvim" } },
     cmd = "Telescope",
-    config = "require('telescope-config')"
+    -- config = "require('telescope-config')"
+    config = function()
+        require("telescope").load_extension("lazygit")
+    end,
   }
   use {'neovim/nvim-lspconfig', config = "require('lsp')"}
   use {'hrsh7th/cmp-nvim-lsp'}
@@ -43,7 +46,12 @@ return require('packer').startup(function(use)
   use {'hrsh7th/vim-vsnip'}
   use {'onsails/lspkind-nvim'}
   use {'norcalli/nvim-colorizer.lua', config = "require('colorizer-config')", event = "BufRead"}
-  use {'glepnir/dashboard-nvim', event = "BufRead", config = "require('dashboard-config')"}
+  use {
+    "glepnir/dashboard-nvim",
+     config = function()
+       require("dashboard-config").setup()
+     end,
+  }
 
   use {"akinsho/toggleterm.nvim", config = "require('toggleterm-config')"}
   use {"terrortylor/nvim-comment", config = "require('comment-config')"}
@@ -57,4 +65,5 @@ return require('packer').startup(function(use)
     run = 'cd app && yarn install'
   }
   use {'tomlion/vim-solidity'}
+
 end)

@@ -14,6 +14,7 @@ vim.cmd('filetype plugin indent on')
 vim.cmd('set nofsync')
 vim.cmd('set foldmethod=manual')
 vim.g.polyglot_disabled = 'solidity'
+vim.cmd('set nocompatible hidden laststatus=2')
 
 vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.hidden = true
