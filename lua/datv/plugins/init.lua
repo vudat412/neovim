@@ -9,6 +9,7 @@
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use {'rose-pine/neovim', config = "vim.cmd('colorscheme rose-pine')"}
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ":TSUpdate",
@@ -61,10 +62,16 @@ return require('packer').startup(function(use)
      end,
   }
 
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = "require('blankline-config')",
+    event = "BufRead"
+  }
   use {"akinsho/toggleterm.nvim", config = "require('toggleterm-config')"}
   use {"terrortylor/nvim-comment", config = "require('comment-config')"}
   use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
   use {'williamboman/nvim-lsp-installer'}
+  use { 'jose-elias-alvarez/null-ls.nvim', config = "require('null-ls-config')" }
   -- nvim telescoop media just use for linux not support windows if can not codec 
   -- use { 'nvim-telescope/telescope-media-files.nvim' }
   use {
@@ -72,6 +79,8 @@ return require('packer').startup(function(use)
     ft = 'markdown',
     run = 'cd app && yarn install'
   }
-  use {'tomlion/vim-solidity'}
+  -- use {'tomlion/vim-solidity'}
+  
+  -- use { 'terryma/vim-multiple-cursors' }
 
 end)

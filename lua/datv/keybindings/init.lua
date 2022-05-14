@@ -17,7 +17,7 @@ map('i', 'jk', '<ESC>', {noremap = true})
 map('i', 'kj', '<ESC>', {noremap = true})
 
 -- 
-map("n", "r", ':redo', {noremap = true, silent = false})
+map("n", "r", ':redo <cr>', {noremap = true, silent = false})
 
 -- Find and replace
 -- map('n', 'S-h', ':%s//gc<left><left><left>', { noremap = true })
@@ -98,7 +98,7 @@ vim.cmd[[
 augroup mygroup
     autocmd!
     " execute python code
-    autocmd FileType python nnoremap <buffer> <F6>
+    autocmd FileType python nnoremap <buffer> <F5>
                 \ :sp<bar>:w<CR> :term python3 %<CR> :startinsert<CR>
     " execute javascript code
     autocmd FileType javascript nnoremap <buffer> <F5>
@@ -107,6 +107,8 @@ augroup mygroup
     autocmd filetype cpp nnoremap <f6> :vnew <bar> :te "a.exe" <cr>
     autocmd filetype c nnoremap <f5> :w <bar> !make %:r && ./%:r <cr>
     autocmd filetype java nnoremap <f5> :w <bar> !javac % && java %:r <cr>
+    autocmd FileType go nnoremap <buffer> <F5>
+                \ :sp<bar>:w<cr> :term go run %<cr> :startinsert<cr>
 augroup end
 ]]
 
@@ -124,3 +126,4 @@ map("n", "<C-s>", ":MarkdownPreviewStop <cr>", {noremap = true, silent = true})
 vim.cmd[[ 
 autocmd BufEnter * :lua require('lazygit.utils').project_root_dir()
 ]]
+
